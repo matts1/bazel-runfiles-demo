@@ -1,0 +1,12 @@
+load(":demo.bzl", "inject_workspace_name")
+
+inject_workspace_name(name = "workspace_name")
+
+sh_binary(
+  name = "debug",
+  srcs = ["debug.sh"],
+  data = [":workspace_name"],
+  deps = [
+    "@bazel_tools//tools/bash/runfiles"
+  ],
+)
